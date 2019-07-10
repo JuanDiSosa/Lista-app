@@ -6,30 +6,64 @@ print("ListaDeCompras.app")
 print("1 -- Ingresar compra a la lista")
 print("2 -- Eliminar compra de la lista")
 print("3 -- Ver la lista de compra")
-x = input(print("numero de la operacion a hacer, o presiona Q para salir:"))
+x = input("numero de la operacion a hacer, o presiona Q para salir:")
 Lista=[]
+
+def cambio():
+    y = input("Continuar? (s/n):  ")
+    if y == "n" or y == "N":
+        print("_____________________________________________________________")
+        print("ListaDeCompras.app")
+        print("1 -- Ingresar compra a la lista")
+        print("2 -- Eliminar compra de la lista")
+        print("3 -- Ver la lista de compra")
+        global x
+        x = input("numero de la operacion a hacer, o presiona Q para salir:")
+        return x 
+    else:
+        print("Se repite la accion")
+
 def Ingreso(String):
     Lista.append(String)
     print("Se agrego con exito!")
     print(f"{Lista}")
-def Eliminacion(String):
-    Lista.append(String)
-    print("Se elimino con exito!")
     
-def Show(String):
+def Eliminacion():
+    Show()
+    z = int(input("Indica que numero de la lista deseas borrar: "))
+    if z-1 in range(0,len(Lista)):
+        Lista.pop(z-1)
+        print("Se elimino con exito!")
+    else:
+        print("Error: valor no valido!")
+        z = int(input("Indica que numero de la lista deseas borrar: "))
+    
+def Show():
+    print("Se muestra la lista hasta ahora: ")
+    print("____________________________")
+    print("****************************************")
+    rangolista = len(Lista)
+    for i in range(0,rangolista):
+        print(f"{i+1} -- {Lista[i]}")
+    print("____________________________")
+    print("****************************************")
+    
     print("Se muestra con exito!")
 while x != "Q":
     if x == "1":
-        String = input(print("Que deseas ingresar: "))
+        String = input("Que deseas ingresar: ")
         Ingreso(String)
+        cambio()
         
-        break
     elif x == "2":
-        Eliminacion(Lista)
-        break
+        Eliminacion()
+        cambio()
+
+        
     elif x == "3":
-        Show(Lista)
-        break
+        
+        Show()
+        cambio()
     else:
         print(f"{x} VALOR NO VALIDO")
         print("-------------------------------------------")
